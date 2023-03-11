@@ -15,8 +15,8 @@ public abstract class Piece {
             this.pieceAlliance=pieceAlliance;
             this.piecePosition=piecePosition;
         }
+        public Alliance getPieceAlliance(){
+            return this.pieceAlliance;
+        }
         public abstract List<Move> calculateLegalMoves(final Board board); // To get the collection of Legal Moves of a piece
-                                                                            
-
-
 }
