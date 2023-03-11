@@ -13,7 +13,7 @@ public abstract class Tile {
     // Protecting the tileCoordinate field further ensures that clients using our API
     // cannot create any instance of this class, making it immutable.
 
-private static final Map<Integer,EmptyTile> Empty_Tiles =createAllPossibleEmptyTiles();
+private static final Map<Integer,EmptyTile> Empty_Tiles_CACHE =createAllPossibleEmptyTiles();
     /**
      * Creates a map containing all possible empty tiles on the chess board.
      * The map is immutable to prevent modification after creation.
@@ -26,7 +26,15 @@ private static final Map<Integer,EmptyTile> Empty_Tiles =createAllPossibleEmptyT
         for(int i=0;i<64;i++){
             emptyTileMap.put(i,new EmptyTile(i));
         }
-        // Create an immutable copy of the map, using the Guava ImmutableMap method.
+
+        /**
+         *  Create an immutable copy of the map, using the Guava ImmutableMap method.
+         *  Collections.unmodifiableMap(emptyTileMap); we can also use the built-in JDK Collections.
+         *  UnmodifiableMap But I choose to use Guava because it is handy and has different libraries
+         *  and is also less error-prone
+         *
+         */
+
         return ImmutableMap.copyOf(emptyTileMap);
     }
 
@@ -37,9 +45,10 @@ private static final Map<Integer,EmptyTile> Empty_Tiles =createAllPossibleEmptyT
      * Parameters:
      * -tileCoordinate: the coordinate of the tile to create
      * - piece: the piece to place on the tile, or null for an empty tile
+     *
      */
     public static Tile createTile(final int tileCoordinate, final Piece piece){
-        return piece!=null ? new OccupiedTile(tileCoordinate,piece):Empty_Tiles.get(tileCoordinate);
+        return piece!=null ? new OccupiedTile(tileCoordinate,piece): Empty_Tiles_CACHE.get(tileCoordinate);
     }
     private Tile(int tileCoordinate){
         this.tileCoordinate=tileCoordinate;

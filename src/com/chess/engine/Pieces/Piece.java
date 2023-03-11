@@ -1,3 +1,22 @@
 package com.chess.engine.Pieces;
-public class Piece {
+
+import com.chess.engine.Alliance;
+import com.chess.engine.board.Board;
+import com.chess.engine.board.Move;
+
+import java.util.List;
+
+public abstract class Piece {
+        //EveryPiece will have its own coordinate
+        //And a piece enum Alliance to determine it is on Black or white
+    protected final int piecePosition;
+    protected final Alliance pieceAlliance;
+        Piece(final int piecePosition,final  Alliance pieceAlliance){
+            this.pieceAlliance=pieceAlliance;
+            this.piecePosition=piecePosition;
+        }
+        public abstract List<Move> calculateLegalMoves(final Board board); // To get the collection of Legal Moves of a piece
+                                                                            
+
+
 }
