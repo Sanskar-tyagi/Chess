@@ -23,7 +23,7 @@ private static final Map<Integer,EmptyTile> Empty_Tiles_CACHE =createAllPossible
     private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
         // Create a new HashMap to store empty tiles.
         final Map<Integer,EmptyTile> emptyTileMap=new HashMap<>();
-        for(int i=0;i<64;i++){
+        for(int i=0;i<BoardUtils.Num_Tiles;i++){
             emptyTileMap.put(i,new EmptyTile(i));
         }
 
@@ -50,7 +50,7 @@ private static final Map<Integer,EmptyTile> Empty_Tiles_CACHE =createAllPossible
     public static Tile createTile(final int tileCoordinate, final Piece piece){
         return piece!=null ? new OccupiedTile(tileCoordinate,piece): Empty_Tiles_CACHE.get(tileCoordinate);
     }
-    private Tile(int tileCoordinate){
+    private Tile(final int tileCoordinate){
         this.tileCoordinate=tileCoordinate;
         // So whenever we construct a new instance of the Tile it will be assigned to tile coordinate.
     }
@@ -78,7 +78,7 @@ private static final Map<Integer,EmptyTile> Empty_Tiles_CACHE =createAllPossible
     }
     public static final class OccupiedTile extends Tile{//Another Subclass
      private final Piece pieceOnTile;
-    OccupiedTile(int tileCoordinate ,  Piece pieceOnTile ){
+    OccupiedTile( int tileCoordinate , final Piece pieceOnTile ){
     super(tileCoordinate);
     this.pieceOnTile=pieceOnTile;
 }

@@ -4,7 +4,7 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.Move;
 
-import java.util.List;
+import java.util.Collection;
 
 public abstract class Piece {
         //EveryPiece will have its own coordinate
@@ -18,5 +18,5 @@ public abstract class Piece {
         public Alliance getPieceAlliance(){
             return this.pieceAlliance;
         }
-        public abstract List<Move> calculateLegalMoves(final Board board); // To get the collection of Legal Moves of a piece
+        public abstract Collection<Move> calculateLegalMoves(final Board board); // To get the collection of Legal Moves of a piece
 }
