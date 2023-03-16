@@ -1,11 +1,14 @@
 package com.chess.engine.board;
 
 public class BoardUtils {
-    public static boolean[] First_Column=initColumn(0);
-    public static boolean[] Second_Column=initColumn(1);
-    public static boolean[] Seventh_Column=initColumn(6);
-    public static boolean[] Eight_Column=initColumn(7);
+    public static final boolean[] First_Column=initColumn(0);
+    public static final boolean[] Second_Column=initColumn(1);
+    public static final boolean[] Seventh_Column=initColumn(6);
+    public static final boolean[] Eight_Column=initColumn(7);
 
+
+    public static final boolean[] Second_Row=null; // For our Rook Class
+    public static final boolean[] Seventh_Row=null; // For our Rook class
     public static final int Num_Tiles=64;
     public static final int Num_Tiles_Per_Row=8;
 

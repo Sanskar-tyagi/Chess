@@ -4,7 +4,6 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
-import com.chess.engine.board.Move.MajorMove;
 import com.chess.engine.board.Tile;
 import com.google.common.collect.ImmutableList;
 
@@ -12,10 +11,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class Bishop extends Piece{
-    private final static int[] CANDIDATE_MOVES_VECTOR_COORDINATES={-9,-7,7,9}; //algorithm to check all valid Moves
+public class Rook extends Piece {
 
-    Bishop(int piecePosition, Alliance pieceAlliance) {
+    private final static int[] CANDIDATE_MOVES_VECTOR_COORDINATES={-8,-1,1,8};
+    Rook(int piecePosition, Alliance pieceAlliance) {
         super(piecePosition, pieceAlliance);
     }
 
@@ -33,7 +32,7 @@ public class Bishop extends Piece{
                 if (BoardUtils.IsValidTileCoordinate(candidateDestinationCoordinate)){
                     final Tile candidateDestiantionTile=board.getTile(candidateDestinationCoordinate);  // Get the tile at the candidate destination coordinate.
                     if(!candidateDestiantionTile.isOccupied()){
-                        legalMoves.add(new MajorMove(board,this,candidateDestinationCoordinate));// If the candidate destination tile is not occupied, a new move object is created and added to the legalMoves list.
+                        legalMoves.add(new Move.MajorMove(board,this,candidateDestinationCoordinate));// If the candidate destination tile is not occupied, a new move object is created and added to the legalMoves list.
                     }
                     else{
                         final Piece pieceAtDestination=candidateDestiantionTile.getPiece(); // Get the Piece that has occupied the Tile.
@@ -49,10 +48,9 @@ public class Bishop extends Piece{
         return ImmutableList.copyOf(legalMoves);
     }
     private static boolean isFirstColumnException(int CurrentPosition,final int candidateOffset ){
-        return  BoardUtils.First_Column[CurrentPosition]&& (candidateOffset ==-9 ||candidateOffset == 7);
+        return  BoardUtils.First_Column[CurrentPosition]&& (candidateOffset ==-1);
     }
     private static boolean isEightColumnException(int CurrentPosition,final int candidateOffset ){
-        return  BoardUtils.Eight_Column[CurrentPosition]&& (candidateOffset ==-7 ||candidateOffset == 9);
+        return  BoardUtils.Eight_Column[CurrentPosition]&& (candidateOffset ==-1);
     }
-
 }

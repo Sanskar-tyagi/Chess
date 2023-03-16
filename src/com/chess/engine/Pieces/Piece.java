@@ -11,12 +11,17 @@ public abstract class Piece {
         //And a piece enum Alliance to determine it is on Black or white
     protected final int piecePosition;
     protected final Alliance pieceAlliance;
+    protected final boolean isFirstMove;
         Piece(final int piecePosition,final  Alliance pieceAlliance){
             this.pieceAlliance=pieceAlliance;
             this.piecePosition=piecePosition;
+            this.isFirstMove=false;
         }
         public Alliance getPieceAlliance(){
             return this.pieceAlliance;
+        }
+        public boolean isFirstMove(){
+            return  this.isFirstMove;
         }
         public abstract Collection<Move> calculateLegalMoves(final Board board); // To get the collection of Legal Moves of a piece
 }
