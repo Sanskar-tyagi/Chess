@@ -34,13 +34,13 @@ public class Knight extends Piece{
                         || isEighthColumnExclusion(this.piecePosition,CurrentCandidateOffset)){
                     continue;
                 }
-                final Tile candidateDestiantionTile=board.getTile(candidateDestinationCoordinate);  // Get the tile at the candidate destination coordinate.
-                if(!candidateDestiantionTile.isOccupied()){
+                final Tile candidateDestinationTile=board.getTile(candidateDestinationCoordinate);  // Get the tile at the candidate destination coordinate.
+                if(!candidateDestinationTile.isOccupied()){
                 legalMoves.add(new MajorMove(board,this,candidateDestinationCoordinate));// If the candidate destination tile is not occupied, a new move object is created and added to the legalMoves list.
                 }
                 else{
-                     final Piece pieceAtDestination=candidateDestiantionTile.getPiece(); // Get the Piece that has occupied the Tile.
-                    final Alliance pieceAlliance= pieceAtDestination.getPieceAlliance();// Get its Alliance
+                     final Piece pieceAtDestination=candidateDestinationTile.getPiece(); // Get the Piece that has occupied the Tile.
+                    final Alliance pieceAlliance= pieceAtDestination.pieceAlliance();// Get its Alliance
                     if (this.pieceAlliance != pieceAlliance){ // If they are opposite alliances, create a new valid Move.
                         legalMoves.add(new AttackMove(board,this,candidateDestinationCoordinate,pieceAtDestination));
                     }

@@ -38,7 +38,7 @@ public class Queen  extends Piece {
                         legalMoves.add(new Move.MajorMove(board, this, candidateDestinationCoordinate));// If the candidate destination tile is not occupied, a new move object is created and added to the legalMoves list.
                     } else {
                         final Piece pieceAtDestination = candidateDestiantionTile.getPiece(); // Get the Piece that has occupied the Tile.
-                        final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();// Get its Alliance
+                        final Alliance pieceAlliance = pieceAtDestination.pieceAlliance();// Get its Alliance
                         if (this.pieceAlliance != pieceAlliance) { // If they are opposite alliances, create a new valid Move.
                             legalMoves.add(new Move.AttackMove(board, this, candidateDestinationCoordinate, pieceAtDestination));
                         }
