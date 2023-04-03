@@ -16,7 +16,7 @@ import static com.chess.engine.board.Move.*;
 public class Knight extends Piece{
 
     private final static int [] Candidate_Moves_Coordinate={-17,-15,-10,-6,6,10,15,17};  // Offset coordinates for the possible moves by a knight
-    Knight(final int piecePosition, final Alliance pieceAlliance) {
+    public  Knight( final Alliance pieceAlliance , final int piecePosition) {
         super(piecePosition, pieceAlliance);
     }
     // Calculates legal moves for the Knight piece.

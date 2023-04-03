@@ -15,7 +15,7 @@ import static com.chess.engine.board.Move.*;
 public class Pawn extends  Piece{
 
     private static final int [] Candidate_Move_Coordinates={8,16,7,9};
-    Pawn(final int piecePosition,final Alliance pieceAlliance) {
+     public  Pawn( final Alliance pieceAlliance , final int piecePosition) {
         super(piecePosition, pieceAlliance);
     }
 

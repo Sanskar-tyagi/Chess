@@ -10,6 +10,9 @@ public abstract class Piece {
         //EveryPiece will have its own coordinate
         //And a piece enum Alliance to determine it is on Black or white
     protected final int piecePosition;
+    public int getPiecePosition(){
+        return this.piecePosition;
+    }
     protected final Alliance pieceAlliance;
     protected final boolean isFirstMove;
         Piece(final int piecePosition,final  Alliance pieceAlliance){

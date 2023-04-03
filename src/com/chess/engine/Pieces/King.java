@@ -14,7 +14,7 @@ import java.util.List;
 public class King extends Piece {
 
     private static final int [] Candidate_Move_Coordinates={-9,-8,-7,-1,1,7,8,9};
-    King(int piecePosition, Alliance pieceAlliance) {
+    public King(final  Alliance pieceAlliance , final int piecePosition) {
         super(piecePosition, pieceAlliance);
     }
 
@@ -23,9 +23,10 @@ public class King extends Piece {
         final List<Move> legalMoves=new ArrayList<>();
         for(final int CurrentCandidateOffset: Candidate_Move_Coordinates){
             final int candidateDestinationCoordinate=this.piecePosition+CurrentCandidateOffset;
-if(){
-    continue;
-}
+        if(isFirstColumnExclusion(this.piecePosition,CurrentCandidateOffset) ||
+            isEighthColumnExclusion(this.piecePosition,CurrentCandidateOffset)){
+        continue;
+            }
                 if(BoardUtils.IsValidTileCoordinate(candidateDestinationCoordinate)){
                     final Tile candidateDestinationTile=board.getTile(candidateDestinationCoordinate);
                     if(!candidateDestinationTile.isOccupied()){
@@ -44,13 +45,14 @@ if(){
         return ImmutableList.copyOf(legalMoves);
     }
     private static boolean isFirstColumnExclusion(final  int CurrentPosition,final int candidateOffset){
-        // If the knight is on the first column, we need to check if the candidate move is valid
-        return BoardUtils.First_Column[CurrentPosition] && (candidateOffset == -17  ||  candidateOffset == -10
-                ||  candidateOffset==6 || candidateOffset==15);
+        return BoardUtils.First_Column[CurrentPosition] && (candidateOffset == -9  ||  candidateOffset == -1
+                ||  candidateOffset==7);
     }
     private static boolean isEighthColumnExclusion  (final  int CurrentPosition,final int candidateOffset){
         // If the knight is on the second column, we need to check if the candidate move is valid
-        return BoardUtils.Second_Column[CurrentPosition] && (candidateOffset == -10 || candidateOffset == 6) ;
+        return BoardUtils.Second_Column[CurrentPosition] && (candidateOffset == -7 || candidateOffset == 1 ||
+                candidateOffset== 9) ;
+
     }
 
 }
