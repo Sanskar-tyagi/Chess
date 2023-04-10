@@ -7,24 +7,51 @@ import com.chess.engine.board.Move;
 import java.util.Collection;
 
 public abstract class Piece {
-        //EveryPiece will have its own coordinate
-        //And a piece enum Alliance to determine it is on Black or white
+    // EveryPiece will have its own coordinate
+    // And a piece enum Alliance to determine it is on Black or white
     protected final int piecePosition;
-    public int getPiecePosition(){
+
+    public int getPiecePosition() {
         return this.piecePosition;
     }
+
     protected final Alliance pieceAlliance;
     protected final boolean isFirstMove;
-        Piece(final int piecePosition,final  Alliance pieceAlliance){
-            this.pieceAlliance=pieceAlliance;
-            this.piecePosition=piecePosition;
-            this.isFirstMove=false;
+
+    Piece(final int piecePosition, final Alliance pieceAlliance) {
+        this.pieceAlliance = pieceAlliance;
+        this.piecePosition = piecePosition;
+        this.isFirstMove = false;
+    }
+
+    public Alliance getPieceAlliance() {
+        return this.pieceAlliance;
+    }
+
+    public boolean isFirstMove() {
+        return this.isFirstMove;
+    }
+
+    public abstract Collection<Move> calculateLegalMoves(final Board board); // To get the collection of Legal Moves of
+                                                                             // a piece
+
+    public enum PieceType {
+        PAWN("P"),
+        KNIGHT("N"),
+        BISHOP("B"),
+        ROOK("R"),
+        QUEEN("Q"),
+        KING("K");
+
+        private String pieceName;
+
+        PieceType(final String pieceName) {
+            this.pieceName = pieceName;
         }
-        public Alliance pieceAlliance(){
-            return this.pieceAlliance;
+
+        @Override
+        public String toString() {
+            return this.pieceName;
         }
-        public boolean isFirstMove(){
-            return  this.isFirstMove;
-        }
-        public abstract Collection<Move> calculateLegalMoves(final Board board); // To get the collection of Legal Moves of a piece
+    }
 }
